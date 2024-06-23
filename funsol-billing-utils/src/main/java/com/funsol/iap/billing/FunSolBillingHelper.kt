@@ -20,7 +20,6 @@ import com.funsol.iap.billing.model.ErrorType
 import com.funsol.iap.billing.model.ProductPriceInfo
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.awaitAll
@@ -166,11 +165,11 @@ class FunSolBillingHelper(private val context: Context) {
                         }
 
                         // Await all CompletableDeferred to complete
-                       val deferredList = mutableListOf(purchasesDeferred)
+                        val deferredList = mutableListOf(purchasesDeferred)
 
-                           when{
+                        when {
                             subKeys.isNotEmpty() -> deferredList.add(subsDeferred)
-                            inAppKeys.isNotEmpty()-> deferredList.add(inAppDeferred)
+                            inAppKeys.isNotEmpty() -> deferredList.add(inAppDeferred)
                         }
 
                         awaitAll(*deferredList.toTypedArray())
